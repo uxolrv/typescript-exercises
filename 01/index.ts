@@ -76,9 +76,18 @@ Exercise:
 
 */
 
-export type User = unknown;
+// unknown 타입은 any 타입과 동일하게 모든 타입을 허용하기 하나,
+// unknown 타입을 사용하기 위해서는 타입 검사(if문)를 해야만 한다.
 
-export const users: unknown[] = [
+// users 변수에 맞게 interface User를 정의해준다.
+export interface User {
+  name: string;
+  age: number;
+  occupation: string;
+}
+
+// User[]: User 타입의 객체가 요소인 배열
+export const users: User[] = [
   {
     name: 'Max Mustermann',
     age: 25,
@@ -91,7 +100,8 @@ export const users: unknown[] = [
   },
 ];
 
-export function logPerson(user: unknown) {
+// 인자로 User 타입을 받는다.
+export function logPerson(user: User) {
   console.log(` - ${user.name}, ${user.age}`);
 }
 
@@ -100,5 +110,5 @@ users.forEach(logPerson);
 
 /* In case if you are stuck:
 
-// https://www.typescriptlang.org/docs/handbook/2/objects.html
+https://www.typescriptlang.org/docs/handbook/2/objects.html
 */
